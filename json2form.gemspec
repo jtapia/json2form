@@ -9,9 +9,9 @@ Gem::Specification.new do |spec|
   spec.email = ['jtapia.dev@gmail.com']
   spec.homepage = 'https://github.com/jtapia/json2form'
   spec.summary = 'Converts JSON to HTML forms'
-  spec.description = '"This gem provides functionality to convert a JSON object into HTML
+  spec.description = 'This gem provides functionality to convert a JSON object into HTML
   form. It can handle nested JSONs. Form class, styles and
-  attributes can be provided."'
+  attributes can be provided.'
   spec.license = 'MIT'
 
   spec.files = ['lib/json2form.rb', 'bin/json2form']
