@@ -1,0 +1,53 @@
+{
+  "schema": {
+    "type": "object",
+    "id": "test",
+    "name": "test",
+    "url": "localhost:3000/test",
+    "action": "get",
+    "form_class": "",
+    "data": {
+      "id": "test"
+    },
+    "attributes": [
+      {
+        "name": "name",
+        "type": "text",
+        "title": "Name",
+        "required": true,
+        "class": "w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm my-2",
+        "placeholder": "Insert name",
+        "label": {
+          "value": "Name:",
+          "class": "text-sm"
+        }
+      },
+      {
+        "name": "age",
+        "type": "number",
+        "title": "Age",
+        "placeholder": "Insert Age",
+        "class": "w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm my-2",
+        "label": {
+          "value": "Age:",
+          "class": "text-sm"
+        }
+      }
+    ],
+    "links": [
+      {
+        "value": "Enviar",
+        "type": "submit",
+        "rel": "self",
+        "class": "block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white text-center"
+      },
+      {
+        "value": "Cancelar",
+        "type": "link",
+        "rel": "self",
+        "url": "https://prmd.rake_task_test.io",
+        "class": "block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white text-center"
+      }
+    ]
+  }
+}

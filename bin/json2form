@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require 'json2table'
+
+form_options = {}
+json = STDIN.read
+json2form = Json2form.get_html_form(json, form_options)
+
+puts json2form
