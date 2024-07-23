@@ -34,8 +34,6 @@ $ cat some.json | json2form # outputs table
 
 ## In your ruby code as library
 
-Refer to the `example/example.rb` file for sample implementation
-
 ```ruby
 require 'json2form'
 
