@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails'
+require 'nokogiri'
 require 'json2form/version'
 require 'json2form/engine'
 
@@ -9,6 +10,7 @@ require 'json2form/builders/form'
 require 'json2form/builders/input'
 require 'json2form/builders/link'
 require 'json2form/builders/label'
+require 'json2form/builders/div'
 
 require 'json2form/utils/converter'
 require 'json2form/utils/parser'

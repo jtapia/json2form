@@ -31,19 +31,34 @@ module Json2form
       def build_form_content(attributes, options)
         html = ''
 
-        attributes.each do |attribute|
-          if attribute['label'].present?
-            html += label_builder_class.new(
-              attribute['label'],
-              options
-            ).create
-          end
-
-          html += input_builder_class.new(
-            attribute,
+        div = if form_attributes_container['type'] == 'div'
+          div_builder_class.new(
+            form_attributes_container,
             options
           ).create
         end
+
+        container = if div.present? ? div : html
+        container = Nokogiri::HTML5.fragment(container)
+        container_html = container.xpath('div').first
+
+        form_attributes_elements.each do |attribute|
+          if attribute['label'].present?
+            container_html.inner_html +=
+              input_builder_class.new(
+                attribute['label'],
+                options
+              ).create
+          end
+
+          container_html.inner_html +=
+            input_builder_class.new(
+              attribute,
+              options
+            ).create
+        end
+
+        html += container_html.to_s
 
         html
       end
@@ -51,12 +66,26 @@ module Json2form
       def build_form_links(attributes, options)
         html = ''
 
-        attributes.each do |attribute|
-          html += link_builder_class.new(
-            attribute,
+        div = if form_links_container['type'] == 'div'
+          div_builder_class.new(
+            form_links_container,
             options
           ).create
         end
+
+        container = if div.present? ? div : html
+        container = Nokogiri::HTML5.fragment(container)
+        container_html = container.xpath('div').first
+
+        form_links_elements.each do |attribute|
+          container_html.inner_html +=
+            link_builder_class.new(
+              attribute,
+              options
+            ).create
+        end
+
+        html += container_html.to_s
 
         html
       end

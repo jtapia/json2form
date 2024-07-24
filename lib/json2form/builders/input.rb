@@ -11,7 +11,7 @@ module Json2form
                 class='#{data['class']}'
                 style='#{data['style']}'
                 required='#{data['required'] || false}'
-                #{parser_class.data_attributes(data['data'] || {})} ><br />"
+                #{parser_class.data_attributes(data['data'] || {})} >"
       end
     end
   end

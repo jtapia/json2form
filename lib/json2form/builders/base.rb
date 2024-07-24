@@ -26,6 +26,10 @@ module Json2form
         @label_builder_class ||= Json2form::Builders::Label
       end
 
+      def div_builder_class
+        @div_builder_class ||= Json2form::Builders::Div
+      end
+
       def parser_class
         @parser_class ||= Json2form::Utils::Parser
       end
@@ -46,6 +50,22 @@ module Json2form
 
       def form_links
         @form_links ||= json_schema['links']
+      end
+
+      def form_links_elements
+        @elements ||= form_links['elements'] || []
+      end
+
+      def form_links_container
+        @form_links_container ||= form_links.except('elements')
+      end
+
+      def form_attributes_content
+        @form_attributes_content ||= form_attributes.except('elements')
+      end
+
+      def form_attributes_elements
+        @form_attributes_elements ||= form_attributes['elements']
       end
     end
   end

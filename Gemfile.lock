@@ -258,6 +258,7 @@ DEPENDENCIES
   factory_bot
   generator_spec
   json2form!
+  nokogiri
   pry-rails
   rails
   rails-i18n

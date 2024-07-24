@@ -13,7 +13,7 @@ module Json2form
             rel='#{data['rel']}'
             #{parser_class.data_attributes(data['data'] || {})} >
              #{data['value']}
-           </button><br />"
+           </button>"
         else
           "<a href='#{data['url']}'
               id='#{data['id']}'
@@ -23,7 +23,7 @@ module Json2form
               rel='#{data['rel']}'
               #{parser_class.data_attributes(data['data'] || {})} >
              #{data['value']}
-           </a><br />"
+           </a>"
         end
       end
     end
