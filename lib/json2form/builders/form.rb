@@ -31,34 +31,23 @@ module Json2form
       def build_form_content(attributes, options)
         html = ''
 
-        div = if form_attributes_container['type'] == 'div'
-          div_builder_class.new(
-            form_attributes_container,
-            options
-          ).create
-        end
+        attributes.each do |attribute|
+          html += '<div>'
 
-        container = div.present? ? div : html
-        container = Nokogiri::HTML5.fragment(container)
-        container_html = container.xpath('div').first
-
-        form_attributes_elements.each do |attribute|
           if attribute['label'].present?
-            container_html.inner_html +=
-              input_builder_class.new(
-                attribute['label'],
-                options
-              ).create
-          end
-
-          container_html.inner_html +=
-            input_builder_class.new(
-              attribute,
+            html += label_builder_class.new(
+              attribute['label'],
               options
             ).create
-        end
+          end
 
-        html += container_html.to_s
+          html += input_builder_class.new(
+            attribute,
+            options
+          ).create
+
+          html += '</div>'
+        end
 
         html
       end
@@ -66,32 +55,22 @@ module Json2form
       def build_form_links(attributes, options)
         html = ''
 
-        div = if form_links_container['type'] == 'div'
-          div_builder_class.new(
-            form_links_container,
+        attributes.each do |attribute|
+          html += '<div>'
+
+          html += link_builder_class.new(
+            attribute,
             options
           ).create
+
+          html += '</div>'
         end
-
-        container = div.present? ? div : html
-        container = Nokogiri::HTML5.fragment(container)
-        container_html = container.xpath('div').first
-
-        form_links_elements.each do |attribute|
-          container_html.inner_html +=
-            link_builder_class.new(
-              attribute,
-              options
-            ).create
-        end
-
-        html += container_html.to_s
 
         html
       end
 
       def build_form_close_tag
-        '</form><br />'
+        "</form>\n"
       end
 
       # def create_form_input(attribute, options)
