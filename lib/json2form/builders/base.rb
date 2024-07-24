@@ -60,8 +60,8 @@ module Json2form
         @form_links_container ||= form_links.except('elements')
       end
 
-      def form_attributes_content
-        @form_attributes_content ||= form_attributes.except('elements')
+      def form_attributes_container
+        @form_attributes_container ||= form_attributes.except('elements')
       end
 
       def form_attributes_elements
