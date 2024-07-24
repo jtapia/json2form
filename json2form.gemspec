@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-require_relative 'lib/json2form/version'
+# encoding: utf-8
+require File.expand_path('../lib/json2form/version', __FILE__)
 
 Gem::Specification.new do |spec|
   spec.name = 'json2form'
