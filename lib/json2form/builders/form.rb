@@ -38,7 +38,7 @@ module Json2form
           ).create
         end
 
-        container = if div.present? ? div : html
+        container = div.present? ? div : html
         container = Nokogiri::HTML5.fragment(container)
         container_html = container.xpath('div').first
 
@@ -73,7 +73,7 @@ module Json2form
           ).create
         end
 
-        container = if div.present? ? div : html
+        container = div.present? ? div : html
         container = Nokogiri::HTML5.fragment(container)
         container_html = container.xpath('div').first
 
