@@ -22,7 +22,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'rake'
-  spec.add_development_dependency 'nokogiri', '>= 1.6.0'
+  spec.add_development_dependency 'nokogiri'
   spec.add_development_dependency 'rails'
   spec.add_development_dependency 'rails-i18n'
 

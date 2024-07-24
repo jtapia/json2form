@@ -1,5 +1,7 @@
 # Json2form
 
+[![test](https://github.com/jtapia/json2form/actions/workflows/main.yml/badge.svg)](https://github.com/jtapia/json2form/actions/workflows/main.yml)
+
 ## Introduction
 
 `json2form` is a ruby library and executable to convert valid JSON objects to
