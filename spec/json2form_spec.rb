@@ -16,46 +16,96 @@ describe Json2form do
   subject { Json2form.get_html_form(data, options) }
   
   context 'with JSON data' do
-    let(:data) do
-      JSON.parse(
-        File.read(File.join('spec/fixtures', 'test.json'))
-      )
-    end
+    context 'with attributes key node' do
+      let(:data) do
+        JSON.parse(
+          File.read(File.join('spec/fixtures', 'test.json'))
+        )
+      end
 
-    context 'as HTML output format' do
-      it 'returns the converted form' do
-        form_converted = subject
+      context 'as HTML output format' do
+        it 'returns the converted form' do
+          form_converted = subject
 
-        expect(form_converted).to include('<form')
-        expect(form_converted).to include('<input')
-        expect(form_converted).to include('<a')
-        expect(form_converted).to include('<button')
+          expect(form_converted).to include('<form')
+          expect(form_converted).to include('<input')
+          expect(form_converted).to include('<a')
+          expect(form_converted).to include('<button')
+        end
+      end
+
+      context 'as HAML output format' do
+        let(:options) { { convert_to: :haml } }
+
+        it 'returns the converted form' do
+          form_converted = subject
+
+          expect(form_converted).to include('%form')
+          expect(form_converted).to include('%input')
+          expect(form_converted).to include('%a')
+          expect(form_converted).to include('%button')
+        end
+      end
+
+      context 'as SLIM output format' do
+        let(:options) { { convert_to: :slim } }
+
+        it 'returns the converted form' do
+          form_converted = subject
+
+          expect(form_converted).to include('form')
+          expect(form_converted).to include('input')
+          expect(form_converted).to include('a')
+          expect(form_converted).to include('button')
+        end
       end
     end
 
-    context 'as HAML output format' do
-      let(:options) { { convert_to: :haml } }
-
-      it 'returns the converted form' do
-        form_converted = subject
-
-        expect(form_converted).to include('%form')
-        expect(form_converted).to include('%input')
-        expect(form_converted).to include('%a')
-        expect(form_converted).to include('%button')
+    context 'with sections key node' do
+      let(:data) do
+        JSON.parse(
+          File.read(File.join('spec/fixtures', 'test_sections.json'))
+        )
       end
-    end
 
-    context 'as SLIM output format' do
-      let(:options) { { convert_to: :slim } }
+      context 'as HTML output format' do
+        it 'returns the converted form' do
+          form_converted = subject
 
-      it 'returns the converted form' do
-        form_converted = subject
+          expect(form_converted).to include('<form')
+          expect(form_converted).to include('<h2')
+          expect(form_converted).to include('<input')
+          expect(form_converted).to include('<a')
+          expect(form_converted).to include('<button')
+        end
+      end
 
-        expect(form_converted).to include('form')
-        expect(form_converted).to include('input')
-        expect(form_converted).to include('a')
-        expect(form_converted).to include('button')
+      context 'as HAML output format' do
+        let(:options) { { convert_to: :haml } }
+
+        it 'returns the converted form' do
+          form_converted = subject
+
+          expect(form_converted).to include('%form')
+          expect(form_converted).to include('%h2')
+          expect(form_converted).to include('%input')
+          expect(form_converted).to include('%a')
+          expect(form_converted).to include('%button')
+        end
+      end
+
+      context 'as SLIM output format' do
+        let(:options) { { convert_to: :slim } }
+
+        it 'returns the converted form' do
+          form_converted = subject
+
+          expect(form_converted).to include('form')
+          expect(form_converted).to include('h2')
+          expect(form_converted).to include('input')
+          expect(form_converted).to include('a')
+          expect(form_converted).to include('button')
+        end
       end
     end
   end
