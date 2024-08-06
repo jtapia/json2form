@@ -9,7 +9,7 @@ module Json2form
         html = ''
 
         html += build_form_tag(form_attributes.merge(options))
-        html += build_form_content(form_content, options)
+        html += build_form_content(options)
         html += build_form_links(form_links, options)
         html += build_form_close_tag
 
@@ -28,7 +28,35 @@ module Json2form
                #{parser_class.data_attributes(options['data'] || {})} >\n"
       end
 
-      def build_form_content(attributes, options)
+      def build_form_content(options)
+        if sections_content.present?
+          return build_form_sections(sections_content, options)
+        end
+
+        build_form_attributes(attributes_content, options)
+      end
+
+      def build_form_sections(sections, options)
+        html = ''
+
+        sections.each do |section|
+          html += "<section class='#{section['inner_class']}'>"
+          html += "<h2 class='#{section['label_class']}'>#{section['name']}</h2>"
+          html += '<div>'
+
+          html += build_form_attributes(
+            section['attributes'],
+            options
+          )
+
+          html += '</div>'
+          html += '</section>'
+        end
+
+        html
+      end
+
+      def build_form_attributes(attributes, options)
         html = ''
 
         attributes.each do |attribute|

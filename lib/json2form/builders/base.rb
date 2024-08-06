@@ -41,11 +41,19 @@ module Json2form
       end
 
       def form_attributes
-        @form_attributes ||= json_schema.except('attributes', 'links')
+        @form_attributes ||= json_schema.except(
+          'sections',
+          'attributes',
+          'links'
+        )
       end
 
-      def form_content
-        @form_content ||= json_schema['attributes']
+      def attributes_content
+        @attributes_content ||= json_schema['attributes']
+      end
+
+      def sections_content
+        @sections_content ||= json_schema['sections']
       end
 
       def form_links
